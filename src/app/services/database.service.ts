@@ -64,9 +64,6 @@ export class DatabaseService {
     return this.products.asObservable();
   }
 
-
-
-
   loadDevelopers() {
     return this.database.executeSql('SELECT * FROM developer', []).then(data => {
       const developers: Dev[] = [];

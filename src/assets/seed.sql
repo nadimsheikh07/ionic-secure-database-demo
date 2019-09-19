@@ -3,16 +3,13 @@ IF NOT EXISTS developer
 (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,skills TEXT,img TEXT);
 INSERT or
 IGNORE INTO developer
-VALUES
-    (1, 'Nadim', '', 'https://www.gkmit.co/images/team/nadim.png');
+VALUES(1, 'Nadim', '', 'https://www.gkmit.co/images/team/nadim.png');
 INSERT or
 IGNORE INTO developer
-VALUES
-    (2, 'Ajay', '', 'https://www.gkmit.co/images/team/ajay.png');
+VALUES(2, 'Ajay', '', 'https://www.gkmit.co/images/team/ajay.png');
 INSERT or
 IGNORE INTO developer
-VALUES
-    (3, 'Neha', '', 'https://www.gkmit.co/images/team/neha.png');
+VALUES(3, 'Neha', '', 'https://www.gkmit.co/images/team/neha.png');
 
 CREATE TABLE
 IF NOT EXISTS product
@@ -39,5 +36,4 @@ VALUES
     (5, 'Ionic google map', 3);
 INSERT or
 IGNORE INTO product(id, name, creatorId)
-VALUES
-    (6, 'Ionicons', 3);
+VALUES(6, 'Ionicons', 3);
