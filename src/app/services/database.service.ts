@@ -36,7 +36,6 @@ export class DatabaseService {
         key: 'developer',
         location: 'default'
       });
-
       this.seedDatabase();
     });
   }
@@ -76,6 +75,7 @@ export class DatabaseService {
   loadDevelopers() {
     return this.database.transaction((tx) => {
       tx.executeSql('SELECT * FROM developer', [], (data) => {
+        console.log('loadDevelopers', data);
         const developers: Dev[] = [];
         if (data.rows.length > 0) {
           for (let i = 0; i < data.rows.length; i++) {
@@ -100,7 +100,6 @@ export class DatabaseService {
 
   addDeveloper(name, skills, img) {
     const data = [name, JSON.stringify(skills), img];
-
     return this.database.transaction((tx) => {
       tx.executeSql('INSERT INTO developer (name, skills, img) VALUES (?, ?, ?)', data, () => {
         this.loadDevelopers();
@@ -117,7 +116,6 @@ export class DatabaseService {
         if (data.rows.item(0).skills !== '') {
           skills = JSON.parse(data.rows.item(0).skills);
         }
-
         return {
           id: data.rows.item(0).id,
           name: data.rows.item(0).name,
@@ -159,6 +157,7 @@ export class DatabaseService {
 
     return this.database.transaction((tx) => {
       tx.executeSql(query, [], (data) => {
+        console.log('loadProducts', data);
         const products = [];
         if (data.rows.length > 0) {
           for (let i = 0; i < data.rows.length; i++) {
