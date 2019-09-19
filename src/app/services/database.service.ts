@@ -38,14 +38,6 @@ export class DatabaseService {
       });
 
       this.seedDatabase();
-      // this.sqlite.create({
-      //   name: 'developers.db',
-      //   location: 'default'
-      // })
-      //   .then((db: SQLiteObject) => {
-      //     this.database = db;
-      //     this.seedDatabase();
-      //   });
     });
   }
 
@@ -64,16 +56,9 @@ export class DatabaseService {
       ['INSERT INTO product VALUES (?,?)', ['ionic 3', 3]],
     ]);
 
-    // this.http.get('assets/seed.sql', { responseType: 'text' })
-    //   .subscribe(sql => {
-    //     this.sqlitePorter.importSqlToDb(this.database, sql)
-    //       .then(_ => {
-    //         this.loadDevelopers();
-    //         this.loadProducts();
-    //         this.dbReady.next(true);
-    //       })
-    //       .catch(e => console.error(e));
-    //   });
+    this.loadDevelopers();
+    this.loadProducts();
+    this.dbReady.next(true);
   }
 
   getDatabaseState() {
@@ -111,27 +96,6 @@ export class DatabaseService {
         console.log('SELECT error: ' + error.message);
       });
     });
-
-    // return this.database.executeSql('SELECT * FROM developer', []).then(data => {
-    //   const developers: Dev[] = [];
-
-    //   if (data.rows.length > 0) {
-    //     for (let i = 0; i < data.rows.length; i++) {
-    //       let skills = [];
-    //       if (data.rows.item(i).skills !== '') {
-    //         skills = JSON.parse(data.rows.item(i).skills);
-    //       }
-
-    //       developers.push({
-    //         id: data.rows.item(i).id,
-    //         name: data.rows.item(i).name,
-    //         skills,
-    //         img: data.rows.item(i).img
-    //       });
-    //     }
-    //   }
-    //   this.developers.next(developers);
-    // });
   }
 
   addDeveloper(name, skills, img) {
@@ -144,10 +108,6 @@ export class DatabaseService {
         console.log('SELECT error: ' + error.message);
       });
     });
-
-    // return this.database.executeSql('INSERT INTO developer (name, skills, img) VALUES (?, ?, ?)', data).then(() => {
-    //   this.loadDevelopers();
-    // });
   }
 
   getDeveloper(id): Promise<Dev> {
@@ -168,20 +128,6 @@ export class DatabaseService {
         console.log('SELECT error: ' + error.message);
       });
     });
-
-    // return this.database.executeSql('SELECT * FROM developer WHERE id = ?', [id]).then(data => {
-    //   let skills = [];
-    //   if (data.rows.item(0).skills !== '') {
-    //     skills = JSON.parse(data.rows.item(0).skills);
-    //   }
-
-    //   return {
-    //     id: data.rows.item(0).id,
-    //     name: data.rows.item(0).name,
-    //     skills,
-    //     img: data.rows.item(0).img
-    //   };
-    // });
   }
 
   deleteDeveloper(id) {
@@ -193,11 +139,6 @@ export class DatabaseService {
         console.log('SELECT error: ' + error.message);
       });
     });
-
-    // return this.database.executeSql('DELETE FROM developer WHERE id = ?', [id]).then(_ => {
-    //   this.loadDevelopers();
-    //   this.loadProducts();
-    // });
   }
 
   updateDeveloper(dev: Dev) {
@@ -210,10 +151,6 @@ export class DatabaseService {
         console.log('SELECT error: ' + error.message);
       });
     });
-
-    // return this.database.executeSql(`UPDATE developer SET name = ?, skills = ?, img = ? WHERE id = ${dev.id}`, data).then(() => {
-    //   this.loadDevelopers();
-    // });
   }
 
   loadProducts() {
@@ -237,20 +174,6 @@ export class DatabaseService {
         console.log('SELECT error: ' + error.message);
       });
     });
-
-    // return this.database.executeSql(query, []).then(data => {
-    //   const products = [];
-    //   if (data.rows.length > 0) {
-    //     for (let i = 0; i < data.rows.length; i++) {
-    //       products.push({
-    //         name: data.rows.item(i).name,
-    //         id: data.rows.item(i).id,
-    //         creator: data.rows.item(i).creator,
-    //       });
-    //     }
-    //   }
-    //   this.products.next(products);
-    // });
   }
 
   addProduct(name, creator) {
@@ -263,9 +186,5 @@ export class DatabaseService {
         console.log('SELECT error: ' + error.message);
       });
     });
-
-    // return this.database.executeSql('INSERT INTO product (name, creatorId) VALUES (?, ?)', data).then(() => {
-    //   this.loadProducts();
-    // });
   }
 }
