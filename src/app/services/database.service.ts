@@ -30,12 +30,12 @@ export class DatabaseService {
     this.plt.ready().then(() => {
       this.sqlite.create({
         name: 'developers.db',
-        location: 'default'
-      })
-        .then((db: SQLiteObject) => {
-          this.database = db;
-          this.seedDatabase();
-        });
+        location: 'default',
+        key: 'developer',
+      }).then((db: SQLiteObject) => {
+        this.database = db;
+        this.seedDatabase();
+      });
     });
   }
 
