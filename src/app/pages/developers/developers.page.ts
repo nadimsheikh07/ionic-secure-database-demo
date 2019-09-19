@@ -45,14 +45,15 @@ export class DevelopersPage implements OnInit {
     let skills = this.developer.skills.split(',');
     skills = skills.map(skill => skill.trim());
 
-    this.db.addDeveloper(this.developer.name, skills, this.developer.img)
-      .then(_ => {
-        this.developer = {
-          skills: '',
-          name: '',
-          img: '',
-        };
-      });
+    const data = this.db.addDeveloper(this.developer.name, skills, this.developer.img);
+    console.log(data);
+    // .then(_ => {
+    //   this.developer = {
+    //     skills: '',
+    //     name: '',
+    //     img: '',
+    //   };
+    // });
   }
 
   addProduct() {
